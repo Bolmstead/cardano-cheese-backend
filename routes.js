@@ -114,4 +114,22 @@ router.get(
   }
 );
 
+router.get(
+  `/GetAddressForRandomNftSale`,
+  async function (req, res, next) {
+    try {
+
+      let result = await axios.get(
+        `https://api.nft-maker.io/GetAddressForRandomNftSale/${NFT_MAKER_API_KEY}/${NFT_PROJECT_ID}/1/25000000`
+      );
+      
+      console.log("result from API call", result)
+
+      return res.json(result.data);
+    } catch (err) {
+      return next(err);
+    }
+  }
+);
+
 module.exports = router;
